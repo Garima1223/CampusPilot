@@ -1,0 +1,11 @@
+# Optional — only needed for the real-photo attendance OCR path in
+# app/ai/attendance_ocr.py (POST /teacher/attendance/ocr with an actual
+# uploaded image). Without these installed, that endpoint automatically
+# falls back to simulated per-student detections, so the app runs fine
+# without this file for a demo/dev setup.
+#
+# Also requires the Tesseract OCR binary itself to be installed on the host
+# (e.g. `apt install tesseract-ocr` on Debian/Ubuntu, or set TESSERACT_CMD
+# to its path if it's not on PATH) — pytesseract is just a wrapper around it.
+opencv-python==4.10.0.84
+pytesseract==0.3.13

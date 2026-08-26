@@ -1,0 +1,20 @@
+# Core dependencies to run the CampusPilot API.
+#
+# Deliberately minimal and dependency-light: password hashing uses the
+# Python standard library (hashlib's PBKDF2, see app/auth/auth.py) instead
+# of passlib+bcrypt — that combo has a well-known runtime crash with recent
+# bcrypt releases (passlib probing a `bcrypt.__about__` attribute bcrypt
+# removed) that "works after pip install" doesn't catch, it only shows up
+# the first time someone actually logs in. JWTs use PyJWT instead of
+# python-jose for the same reason: fewer native/C-extension dependencies
+# that can fail to build or version-conflict on a fresh machine.
+fastapi==0.128.8
+uvicorn==0.39.0
+sqlalchemy==2.0.52
+pydantic==2.13.4
+pyjwt==2.12.1
+python-multipart==0.0.20
+
+# Only needed if you switch DATABASE_URL to MySQL instead of the SQLite
+# default (see app/database/db.py).
+pymysql==1.2.0
